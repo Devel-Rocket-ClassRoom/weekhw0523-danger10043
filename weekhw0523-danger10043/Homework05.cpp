@@ -60,7 +60,6 @@ void playerMove(int map[][20], int mazeRows, int mazeCols, int& playerPosR, int&
 	case 'w':
 		if (playerPosR > 0 && map[playerPosR - 1][playerPosC] != 1) {
 			map[playerPosR][playerPosC] = 0;
-			map[playerPosR - 1][playerPosC] = 4;
 			playerPosR--;
 		}
 		break;
@@ -68,7 +67,6 @@ void playerMove(int map[][20], int mazeRows, int mazeCols, int& playerPosR, int&
 	case 'a':
 		if (playerPosC > 0 && map[playerPosR][playerPosC - 1] != 1) {
 			map[playerPosR][playerPosC] = 0;
-			map[playerPosR][playerPosC - 1] = 4;
 			playerPosC--;
 		}
 		break;
@@ -76,7 +74,6 @@ void playerMove(int map[][20], int mazeRows, int mazeCols, int& playerPosR, int&
 	case 's':
 		if (playerPosR < mazeRows - 1 && map[playerPosR + 1][playerPosC] != 1) {
 			map[playerPosR][playerPosC] = 0;
-			map[playerPosR + 1][playerPosC] = 4;
 			playerPosR++;
 		}
 		break;
@@ -84,7 +81,6 @@ void playerMove(int map[][20], int mazeRows, int mazeCols, int& playerPosR, int&
 	case 'd':
 		if (playerPosC < mazeCols - 1 && map[playerPosR][playerPosC + 1] != 1) {
 			map[playerPosR][playerPosC] = 0;
-			map[playerPosR][playerPosC + 1] = 4;
 			playerPosC++;
 		}
 	}
@@ -109,7 +105,7 @@ bool playBattle(int& playerHealth) {
 		}
 
 		if (enemyHealth <= 0) {
-			printf("플레이어 승리! 적이 쓰러졌습니다!\n\n");
+			printf("< 플레이어 승리! 적이 쓰러졌습니다! >\n\n");
 			return true;
 		}
 
@@ -118,13 +114,14 @@ bool playBattle(int& playerHealth) {
 		printf("적이 공격하여 %d 의 피해를 입었습니다. (플레이어의 현재 체력 : %d)\n\n", damage, playerHealth);
 
 		if (playerHealth <= 0) {
-			printf("체력이 모두 소진되었습니다. 전투에서 패배했습니다..\n\n");
+			printf("< 체력이 모두 소진되었습니다. 전투에서 패배했습니다.. >\n\n");
 			return false;
 		}
 	}
 }
 
 void Homework05_Run() {
+	printf("<< HOMEWORK - 05 >>\n\n");
 	srand(time(0));
 
 	// 미로 크기
@@ -171,14 +168,16 @@ void Homework05_Run() {
 		checkMovableDirection(Maze, MazeRows, MazeCols, playerPosR, playerPosC);
 		printf("\n\n방향 입력 : ");
 		char direction; std::cin >> direction;
+		printf("\n");
 		playerMove(Maze, MazeRows, MazeCols, playerPosR, playerPosC, direction);
 		if (rand() % 15 == 0) {
 			if (!playBattle(playerHealth))
 				break;
 		}
 		Maze[startPosR][startPosC] = 2;
+		Maze[playerPosR][playerPosC] = 4;
 		if (playerPosR == exitPosR && playerPosC == exitPosC) {
-			printf("[ == 축하드립니다! 미로를 탈출했습니다! == ]");
+			printf("[ == 축하드립니다! 미로를 탈출했습니다! == ]\n");
 			break;
 		}
 	}
