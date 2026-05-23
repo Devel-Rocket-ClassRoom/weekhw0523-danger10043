@@ -2,7 +2,7 @@
 #include <iostream>
 
 int SumDigit(std::string Number)
-{	
+{
 	int result = 0;
 	int Length = Number.length();
 	for (int i = 0; i < Length; i++) {

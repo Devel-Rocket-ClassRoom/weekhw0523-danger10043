@@ -1,6 +1,9 @@
 ﻿#include "Homework02.h"
+#include "Homework03.h"
+#include "Homework04.h"
+#include "Homework05.h"
 
 int main()
 {
-    Homework02_Run();
+    Homework05_Run();
 }
